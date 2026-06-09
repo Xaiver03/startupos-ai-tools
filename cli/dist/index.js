@@ -2,6 +2,9 @@
 import { Command } from 'commander';
 import { config } from 'dotenv';
 import chalk from 'chalk';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import { createDbCommand } from './commands/db.js';
 import { createUsersCommand } from './commands/users.js';
 import { createWorkspaceCommand } from './commands/workspace.js';
@@ -24,6 +27,10 @@ import { createApiCommand } from './commands/api.js';
 import { registerSetupCommand } from './commands/setup.js';
 // Load environment variables
 config();
+// Get version from package.json
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const packageJson = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), 'utf-8'));
 const program = new Command();
 program
     .name('startupos-cli')
@@ -42,7 +49,7 @@ program
     '  crud action <resource-type> <id> <action>  执行操作\n' +
     '  crud list-types                     查看所有 127 种资源类型\n\n' +
     '💼 业务逻辑使用专用命令：accounting, tax, invoice, period')
-    .version('1.0.0');
+    .version(packageJson.version);
 // Add commands
 program.addCommand(createDbCommand());
 program.addCommand(createUsersCommand());
