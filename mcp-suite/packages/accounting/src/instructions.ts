@@ -1,77 +1,52 @@
-export const SSOS_ACCOUNTING_INSTRUCTIONS = `SSOS Accounting MCP 服务器 - 财务会计、税务、发票、银行对账
+export const SSOS_ACCOUNTING_INSTRUCTIONS = `SSOS Accounting MCP 服务器 - 财务会计、报表生成、税务计算
 
 提供完整的财务会计操作工具，支持小企业会计准则和企业会计准则。
 
-## 工具列表 (41 个)
+## 重要说明
 
-### 会计科目 (5 个)
+**数据操作（CRUD）请使用 startupos-core 的 universal_* 工具**:
+- 科目管理 → universal_list/get/create/update/delete("accounts", ...)
+- 凭证管理 → universal_list/get/create/update/delete("journal_entries", ...)
+- 发票管理 → universal_list/get/create/update/delete("business_vat_invoices", ...)
+- 往来单位 → universal_list/get/create/update/delete("partners", ...)
 
-**listAccounts** - 列出所有会计科目
-参数: filters (object, 可选) - 如 { type: 'asset', level: 1 }
-返回: 科目数组（编号、名称、类型、余额方向）
+**本服务器专注于业务逻辑**: 报表生成、税务计算、期末处理、银行对账等复杂操作。
 
-**getAccount** - 获取单个科目详情
-参数: accountId (string, 必填)
+## CLI 命令对应
 
-**createAccount** - 创建新科目
-参数: code (string), name (string), type (enum), debitCredit (enum), level (number)
+如果使用 CLI（@xaiverdeng/ssos），对应命令为:
+- 数据操作: ssos crud list/get/create/update/delete <resource>
+- 报表生成: ssos accounting trial-balance/balance-sheet/income-statement
+- 税务计算: ssos tax calendar/calculations/compliance
+- 发票操作: ssos invoice to-journal-entry/batch-to-entries/reverse
 
-**updateAccount** - 更新科目信息
-参数: accountId (string), data (object)
+## 工具列表 (业务逻辑工具)
 
-**deleteAccount** - 删除科目（需无余额且无关联凭证）
-参数: accountId (string)
+### 财务报表 (7 个报表生成工具)
 
-### 记账凭证 (8 个)
-
-**listJournalEntries** - 列出凭证
-参数: filters (object, 可选) - 如 { period: '2026-06', status: 'posted' }
-
-**getJournalEntry** - 获取凭证详情
-参数: entryId (string)
-
-**createJournalEntry** - 创建记账凭证
-参数: entryDate (date), description (string), items (array)
-items 格式: [{ accountId, debit, credit, description }]
-
-**updateJournalEntry** - 更新凭证（仅草稿状态）
-参数: entryId (string), data (object)
-
-**deleteJournalEntry** - 删除凭证（仅草稿状态）
-参数: entryId (string)
-
-**postJournalEntry** - 过账凭证（草稿 → 已过账）
-参数: entryId (string)
-
-**reverseJournalEntry** - 冲红凭证
-参数: entryId (string), reverseDate (date, 可选)
-返回: 新创建的红字凭证
-
-**batchCreateJournalEntries** - 批量创建凭证
-参数: entries (array)
-
-### 财务报表 (6 个)
-
-**getBalanceSheet** - 资产负债表
+**getBalanceSheet** - 生成资产负债表
 参数: date (date, 必填), accountingStandard (enum, 可选)
 返回: 资产、负债、所有者权益各项目金额
 
-**getIncomeStatement** - 利润表
+**getIncomeStatement** - 生成利润表
 参数: startDate (date), endDate (date), accountingStandard (enum, 可选)
 返回: 收入、成本、费用、利润各项目金额
 
-**getCashFlowStatement** - 现金流量表
+**getCashFlowStatement** - 生成现金流量表
 参数: startDate (date), endDate (date)
 返回: 经营、投资、筹资活动现金流
 
-**getEquityChangesStatement** - 所有者权益变动表（企业准则）
+**getEquityChangesStatement** - 生成所有者权益变动表（企业准则）
 参数: year (number)
 
-**getTrialBalance** - 试算平衡表
+**getTrialBalance** - 生成试算平衡表
 参数: date (date)
 返回: 各科目借贷方发生额和余额
 
-**getGeneralLedger** - 总账
+**getGeneralLedger** - 生成总账
+参数: accountId (string), startDate (date), endDate (date)
+
+**getSubsidiaryLedger** - 生成明细账
 参数: accountId (string), startDate (date), endDate (date)
 
 ### 期末处理 (4 个)
@@ -128,38 +103,13 @@ items 格式: [{ accountId, debit, credit, description }]
 **matchBankTransactions** - 自动匹配银行流水与凭证
 参数: reconciliationId (string)
 
-### 发票管理 (4 个)
-
-**listInvoices** - 列出发票
-参数: filters (object) - 如 { type: 'sales', status: 'issued' }
-
-**createInvoice** - 开具发票
-参数: type (enum), customerName (string), items (array), taxRate (number)
-
-**getInvoice** - 获取发票详情
-参数: invoiceId (string)
-
-**reverseInvoice** - 开具红字发票（冲红）
-参数: invoiceId (string), reason (string)
-
-### 往来管理 (3 个)
-
-**listPartners** - 列出往来单位（客户/供应商）
-参数: type (enum: 'customer' | 'supplier')
-
-**getPartnerBalance** - 获取往来单位余额
-参数: partnerId (string), date (date, 可选)
-
-**createPartner** - 创建往来单位
-参数: name (string), type (enum), taxNumber (string, 可选)
-
 ## 使用场景
 
-### 1. 日常记账
+### 1. 日常记账（使用 startupos-core）
 \`\`\`
-1. listAccounts() // 查看科目表
-2. createJournalEntry({ ... }) // 创建凭证
-3. postJournalEntry(entryId) // 过账
+1. universal_list("accounts") // 查看科目表
+2. universal_create("journal_entries", { ... }) // 创建凭证
+3. universal_action("journal_entries", entryId, "post") // 过账
 \`\`\`
 
 ### 2. 月末结账
@@ -179,7 +129,7 @@ items 格式: [{ accountId, debit, credit, description }]
 ### 4. 税务申报
 \`\`\`
 1. calculateVAT(period, taxpayerType) // 计算增值税
-2. createTaxReturn(period, 'vat', data) // 创建申报表
+2. universal_create("tax_returns", { period, taxType: 'vat', data }) // 创建申报表
 3. getTaxCalendar(year) // 查看申报截止日期
 \`\`\`
 
