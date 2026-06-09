@@ -1,0 +1,61 @@
+{
+  "name": "@xaiverdeng/startupos-cli",
+  "version": "1.0.0",
+  "description": "Startup OS CLI — AI Native command-line tool for financial management. One-line setup for MCP servers across 9 AI IDEs.",
+  "type": "module",
+  "bin": {
+    "startupos-cli": "./dist/index.js"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "keywords": [
+    "startupos",
+    "startup-os",
+    "创业os",
+    "financial-management",
+    "accounting",
+    "cli",
+    "ai-native",
+    "mcp",
+    "mcp-server",
+    "claude-code",
+    "cursor",
+    "ai-tools"
+  ],
+  "author": "Finlaw",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finlaw/startupos.git",
+    "directory": "ai-tools/cli"
+  },
+  "homepage": "https://github.com/finlaw/startupos#readme",
+  "bugs": {
+    "url": "https://github.com/finlaw/startupos/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js",
+    "watch": "tsc --watch",
+    "dev": "tsc && chmod +x dist/index.js && node dist/index.js",
+    "prepublishOnly": "npm run build",
+    "postinstall": "echo '✅ Startup OS CLI installed. Run: startupos-cli setup'"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "pg": "^8.11.3",
+    "dotenv": "^16.4.5",
+    "chalk": "^5.3.0",
+    "ora": "^8.0.1",
+    "table": "^6.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.0",
+    "typescript": "^5.8.3"
+  }
+}

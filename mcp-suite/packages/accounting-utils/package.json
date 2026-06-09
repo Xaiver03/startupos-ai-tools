@@ -1,0 +1,29 @@
+{
+  "name": "@startupos/mcp-accounting-utils",
+  "version": "1.0.0",
+  "description": "Utility functions for financial data processing - bank statements, invoice reconciliation, XML parsing",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node --test"
+  },
+  "keywords": [
+    "accounting",
+    "bank-statements",
+    "invoice-reconciliation",
+    "xml-parser",
+    "chinese-accounting"
+  ],
+  "dependencies": {
+    "xml2js": "^0.6.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/xml2js": "^0.4.14",
+    "typescript": "^5.3.3"
+  }
+}

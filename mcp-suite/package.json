@@ -1,0 +1,17 @@
+{
+  "name": "startupos-mcp-suite",
+  "version": "1.0.0",
+  "description": "Startup OS MCP Server Suite - Modular MCP servers for Startup OS financial management",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "dev": "npm run dev --workspaces",
+    "clean": "rm -rf packages/*/dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
