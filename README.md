@@ -59,12 +59,17 @@
 │  命令行工具      │  MCP 服务器组    │  工作流技能              │
 ├─────────────────┼─────────────────┼─────────────────────────┤
 │  • 服务端直接执行 │  • AI Agent 调用 │  • Claude Code 工作流   │
-│  • Bash/脚本调用 │  • JSON-RPC 协议 │  • 调用 CLI 命令        │
+│  • Bash/脚本调用 │  • JSON-RPC 协议 │  • 调用 CLI 命令 ⚠️     │
 │  • 数据库直连    │  • HTTP API 调用 │  • 多步骤编排           │
 ├─────────────────┼─────────────────┼─────────────────────────┤
 │  155 命令        │  81 工具         │  3 技能文件              │
-│  19 模块         │  127 资源类型    │                         │
+│  19 模块         │  127 资源类型    │  依赖 CLI ⚠️             │
 └─────────────────┴─────────────────┴─────────────────────────┘
+
+依赖关系:
+  MCP Suite → 独立运行（不依赖 CLI）
+  Skills → 依赖 CLI（必须先安装 CLI）
+  CLI → 独立运行
 ```
 
 ### 🚀 快速开始
@@ -82,9 +87,16 @@ npx @xaiverdeng/startupos-cli setup
 # 或仅安装 MCP 服务器
 npx @xaiverdeng/startupos-cli setup --mcp
 
-# 或仅安装 Skills
-npx @xaiverdeng/startupos-cli setup --skill
+# ⚠️ 注意: Skills 依赖 CLI，不能单独安装
+# 如果只想要 Skills，需要先安装 CLI：
+npm install -g @xaiverdeng/startuos-cli  # 安装 CLI
+npx @xaiverdeng/startupos-cli setup --skill  # 然后安装 Skill
 ```
+
+**重要说明**:
+- **MCP 服务器**: 独立工具，AI IDE 直接调用，不依赖 CLI
+- **Skills**: Claude Code 工作流，内部调用 CLI 命令，必须先安装 CLI
+- **推荐**: 使用 `setup` (无参数) 安装所有组件
 
 #### 方法 2：全局安装 CLI
 
