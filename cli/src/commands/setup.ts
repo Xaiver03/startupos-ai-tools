@@ -81,9 +81,15 @@ async function setupMcpServers(): Promise<void> {
 
   const missingPackages: string[] = [];
   for (const pkg of mcpPackages) {
-    const distPath = path.join(mcpSuitePath, 'packages', pkg, 'dist', 'index.js');
+    // Try bundled path first (NPM install: cli/mcp-servers/pkg/index.js)
+    let distPath = path.join(mcpSuitePath, pkg, 'index.js');
+
+    // Fall back to source path (development: mcp-suite/packages/pkg/dist/index.js)
     if (!fs.existsSync(distPath)) {
-      missingPackages.push(pkg);
+      distPath = path.join(mcpSuitePath, 'packages', pkg, 'dist', 'index.js');
+      if (!fs.existsSync(distPath)) {
+        missingPackages.push(pkg);
+      }
     }
   }
 
@@ -326,7 +332,14 @@ async function checkDoctor(): Promise<void> {
   let mcpBuilt = 0;
 
   for (const pkg of mcpPackages) {
-    const distPath = path.join(mcpSuitePath, 'packages', pkg, 'dist', 'index.js');
+    // Try bundled path first (NPM install: cli/mcp-servers/pkg/index.js)
+    let distPath = path.join(mcpSuitePath, pkg, 'index.js');
+
+    // Fall back to source path (development: mcp-suite/packages/pkg/dist/index.js)
+    if (!fs.existsSync(distPath)) {
+      distPath = path.join(mcpSuitePath, 'packages', pkg, 'dist', 'index.js');
+    }
+
     if (fs.existsSync(distPath)) {
       log(`  ✓ startupos-${pkg} built`, 'green');
       mcpBuilt++;
