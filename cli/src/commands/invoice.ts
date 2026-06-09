@@ -74,8 +74,8 @@ export function createInvoiceCommand() {
 
   // Create journal entry from invoice
   invoiceCmd
-    .command('create-entry')
-    .description('Create a journal entry from a VAT invoice')
+    .command('to-journal-entry')
+    .description('Generate a journal entry from a VAT invoice (从发票生成会计凭证)')
     .argument('<id>', 'Invoice ID')
     .option('--json', 'Output as JSON')
     .action(async (id: string, options) => {
@@ -95,8 +95,8 @@ export function createInvoiceCommand() {
 
   // Batch create journal entries from invoices
   invoiceCmd
-    .command('batch-create-entries')
-    .description('Batch create journal entries from VAT invoices')
+    .command('batch-to-entries')
+    .description('Batch generate journal entries from VAT invoices (批量从发票生成凭证)')
     .requiredOption('--ids <json>', 'JSON array of invoice IDs')
     .option('--json', 'Output as JSON')
     .action(async (options) => {

@@ -1,51 +1,10 @@
 import { Command } from 'commander';
 import { query } from '../db.js';
-import { table } from 'table';
 import chalk from 'chalk';
 import ora from 'ora';
 export function createWorkspaceCommand() {
     const workspaceCmd = new Command('workspace')
-        .description('Workspace management');
-    // List workspaces
-    workspaceCmd
-        .command('list')
-        .description('List all workspaces')
-        .option('-l, --limit <number>', 'Limit results', '50')
-        .action(async (options) => {
-        try {
-            const result = await query(`
-          SELECT
-            w.id,
-            w.name,
-            w.legal_name,
-            w.accounting_standard,
-            w.created_at,
-            COUNT(wm.user_id) as member_count
-          FROM workspaces w
-          LEFT JOIN workspace_members wm ON w.id = wm.workspace_id
-          GROUP BY w.id
-          ORDER BY w.created_at DESC
-          LIMIT $1
-        `, [parseInt(options.limit)]);
-            const data = [
-                ['ID', 'Name', 'Legal Name', 'Standard', 'Members', 'Created'],
-                ...result.rows.map(row => [
-                    row.id,
-                    row.name,
-                    row.legal_name || '-',
-                    row.accounting_standard,
-                    String(row.member_count),
-                    new Date(row.created_at).toLocaleDateString()
-                ])
-            ];
-            console.log(table(data));
-            console.log(chalk.gray(`\nTotal workspaces: ${result.rows.length}`));
-        }
-        catch (error) {
-            console.error(chalk.red(error instanceof Error ? error.message : String(error)));
-            process.exit(1);
-        }
-    });
+        .description('Workspace management - Use "ssos crud list workspaces" for data operations');
     // Get workspace stats
     workspaceCmd
         .command('stats')

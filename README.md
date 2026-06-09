@@ -24,7 +24,7 @@
 
 - 🤖 **AI Native 设计** - 无缝集成 9+ AI IDE（Claude Code, Cursor, Windsurf, Zed 等）
 - ⚡ **一键安装** - 自动配置 MCP 服务器和 Claude Skills
-- 🛠️ **155 个 CLI 命令** - 涵盖会计、税务、发票、人事、法务
+- 🛠️ **50+ 核心命令** - 统一 CRUD + 业务逻辑 + AI 功能
 - 🔧 **7 个通用工具 + 127 种资源** - 统一 CRUD 接口
 - 📦 **模块化架构** - CLI、MCP Suite、Skills 独立可用
 
@@ -32,17 +32,14 @@
 
 ```
 📦 包含组件
-├─ CLI 工具................155+ 命令
+├─ CLI 工具................51 核心命令
 ├─ MCP 服务器..............81 工具 + 127 资源
 └─ Claude Skills...........3 技能文件
 
-🎯 覆盖业务
-├─ 会计模块................41 命令（报表/凭证/期末）
-├─ 税务模块................13 命令（增值税/所得税/个税）
-├─ 发票模块................10 命令（导入/验证/记账）
-├─ 人事模块................10 命令（员工/薪资/合同）
-├─ 法务模块................13 命令（审查/生成/提醒）
-└─ AI 记账.................4 命令（扫描/OCR/学习）
+🎯 三层命令架构
+├─ CRUD 层.................统一数据操作（127 种资源）
+├─ 业务层.................29 个专用命令（报表/计算/匹配）
+└─ AI 层..................10 个 AI 命令（记账/审查/问答）
 
 🔌 支持 AI IDE
 └─ Claude Code, Cursor, Windsurf, VS Code + Cline, Zed, 
@@ -211,55 +208,64 @@ ssos crud get <resource> <id>
 ssos crud create <resource> <json-data>
 ssos crud update <resource> <id> <json-data>
 ssos crud delete <resource> <id>
+ssos crud action <resource> <id> <action>  # 特殊操作（post, approve, reverse）
 
 # 示例
 ssos crud list journal-entries --workspace-id=abc123
 ssos crud get accounts 5001
 ssos crud create employees '{"name":"张三","email":"zhang@example.com"}'
+ssos crud action journal-entries je_001 post      # 凭证过账
+ssos crud action journal-entries je_001 reverse   # 凭证冲红
 ```
 
-**127 种资源类型**：`accounts`, `journal-entries`, `vat-invoices`, `employees`, `contracts`, `tax-calculations` 等
+**127 种资源类型**：`accounts`, `journal-entries`, `business-vat-invoices`, `employees`, `contracts`, `tax-calculations` 等
 
-#### 💰 会计命令（41 工具）
+**查看所有资源类型**：`ssos crud list-types`
+
+#### 💰 会计命令（7 个报表生成）
 
 ```bash
 # 报表生成
 ssos accounting trial-balance        # 试算平衡表
 ssos accounting balance-sheet        # 资产负债表
 ssos accounting income-statement     # 利润表
-ssos accounting cash-flow           # 现金流量表
-
-# 凭证管理
-ssos accounting batch-entries <file> # 批量记账
-ssos accounting reverse-entry <id>   # 冲红凭证
-
-# 期末处理
-ssos accounting period-close         # 期末结转
+ssos accounting cash-flow            # 现金流量表
+ssos accounting general-ledger       # 总账
+ssos accounting bank-journal         # 银行日记账
+ssos accounting account-balances     # 科目余额表
 ```
 
-#### 🧾 税务命令（13 工具）
+**注意**：凭证和科目的数据操作请使用 `crud` 命令
+
+#### 🧾 税务命令（6 个计算和查询）
 
 ```bash
-ssos tax calculate-vat              # 计算增值税
-ssos tax annual-settlement          # 汇算清缴
-ssos tax salary-tax                 # 工资个税
-ssos tax calendar                   # 纳税日历
+ssos tax calendar                   # 税务日历
+ssos tax calculations               # 税务计算
+ssos tax compliance                 # 合规检查
+ssos tax filings                    # 申报表
+ssos tax rules                      # 税务规则
+ssos tax loss-carryforward          # 亏损弥补
 ```
 
-#### 📄 发票命令（10 工具）
+#### 📄 发票命令（3 个业务操作）
 
 ```bash
-ssos invoice import-xml <file>      # 导入增值税发票
-ssos invoice batch-create-entries   # 批量生成凭证
-ssos invoice verify <code>          # 验证发票真伪
+ssos invoice reverse <id>              # 冲红发票
+ssos invoice to-journal-entry <id>     # 从发票生成凭证
+ssos invoice batch-to-entries --ids    # 批量生成凭证
 ```
 
-#### 👥 人事 + ⚖️ 法务 + 🤖 AI（37 工具）
+**注意**：发票数据操作请使用 `crud list business-vat-invoices`
+
+#### 🤖 AI 命令（5 个智能功能）
 
 ```bash
-ssos hr payroll-calculate           # 计算工资
-ssos legal contract-review <file>   # 合同审查
-ssos ai-bookkeeping scan "购买办公用品500元"  # 智能记账
+ssos ai-bookkeeping book --text "购买办公用品500元"  # AI 记账
+ssos ai-bookkeeping ocr --file-url <url>           # OCR 识别
+ssos ai-bookkeeping compliance --question "问题"    # 合规问答
+ssos ai-bookkeeping conversations                  # 对话历史
+ssos ai-bookkeeping file-upload --file <path>      # 上传文件
 ```
 
 ### 📋 完整命令参考
@@ -267,19 +273,24 @@ ssos ai-bookkeeping scan "购买办公用品500元"  # 智能记账
 | 模块 | 命令数 | 主要功能 |
 |------|--------|---------|
 | **auth** | 3 | 登录、API Key、查看用户 |
-| **crud** | 5×127 | 通用 CRUD（127 种资源类型）|
-| **accounting** | 41 | 报表、凭证、账簿、期末处理、银行对账 |
-| **tax** | 13 | 增值税、所得税、个税、税务日历 |
-| **invoice** | 10 | 导入、验证、记账、开票申请 |
-| **hr** | 10 | 员工、薪资、合同 |
-| **legal** | 13 | 合同审查、风险评分、生成催款函 |
-| **ai-bookkeeping** | 4 | 智能扫描、OCR、学习反馈 |
+| **crud** | 7 actions × 127 resources | 统一 CRUD 接口（list, get, create, update, delete, action, list-types）|
+| **accounting** | 7 | 财务报表生成（试算表、资产负债表、利润表等）|
+| **tax** | 6 | 税务计算和查询（日历、合规、申报）|
+| **invoice** | 3 | 发票业务逻辑（冲红、生成凭证）|
+| **ai-bookkeeping** | 5 | AI 智能记账（OCR、自动记账、合规问答）|
+| **workspace** | 1 | 工作区统计（stats）|
+| **users** | 1 | 用户管理（reset-password）|
 | **setup** | 1 | 一键安装配置 |
 | **doctor** | 1 | 健康检查 |
 
+**总计**: 51 核心命令
+
 **完整文档**: 运行 `ssos --help` 或 `ssos <module> --help` 查看详细用法
 
-**💡 提示**: 包名和命令都是 `ssos`，简洁统一
+**💡 提示**: 
+- 90% 数据操作通过 `crud` 命令完成
+- 复杂业务逻辑使用专用命令（accounting, tax, invoice）
+- AI 功能统一在 `ai-bookkeeping` 模块
 
 #### MCP 服务器
 
