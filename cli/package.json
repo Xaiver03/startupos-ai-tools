@@ -1,6 +1,6 @@
 {
   "name": "@xaiverdeng/startupos-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Startup OS CLI — AI Native command-line tool for financial management. One-line setup for MCP servers across 9 AI IDEs.",
   "type": "module",
   "bin": {
@@ -8,6 +8,9 @@
   },
   "files": [
     "dist/",
+    "../mcp-suite/packages/*/dist/",
+    "../mcp-suite/packages/*/package.json",
+    "../skills/",
     "README.md"
   ],
   "keywords": [
@@ -17,45 +20,40 @@
     "financial-management",
     "accounting",
     "cli",
-    "ai-native",
     "mcp",
-    "mcp-server",
+    "model-context-protocol",
+    "ai-native",
     "claude-code",
     "cursor",
-    "ai-tools"
+    "windsurf"
   ],
-  "author": "Finlaw",
+  "author": "StartupOS Team",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/finlaw/startupos.git",
-    "directory": "ai-tools/cli"
+    "url": "https://github.com/Xaiver03/startupos-ai-tools.git",
+    "directory": "cli"
   },
-  "homepage": "https://github.com/finlaw/startupos#readme",
   "bugs": {
-    "url": "https://github.com/finlaw/startupos/issues"
+    "url": "https://github.com/Xaiver03/startupos-ai-tools/issues"
   },
+  "homepage": "https://github.com/Xaiver03/startupos-ai-tools#readme",
   "engines": {
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build": "tsc && chmod +x dist/index.js",
-    "watch": "tsc --watch",
-    "dev": "tsc && chmod +x dist/index.js && node dist/index.js",
-    "prepublishOnly": "npm run build",
-    "postinstall": "echo '✅ Startup OS CLI installed. Run: startupos-cli setup'"
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "commander": "^12.0.0",
-    "pg": "^8.11.3",
-    "dotenv": "^16.4.5",
-    "chalk": "^5.3.0",
-    "ora": "^8.0.1",
-    "table": "^6.8.1"
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.7",
+    "pg": "^8.14.0"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
-    "@types/pg": "^8.11.0",
-    "typescript": "^5.8.3"
+    "@types/node": "^22.10.5",
+    "@types/pg": "^8.12.0",
+    "typescript": "^5.8.2"
   }
 }

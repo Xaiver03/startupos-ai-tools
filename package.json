@@ -1,0 +1,43 @@
+{
+  "name": "@xaiverdeng/startupos-ai-tools",
+  "version": "1.0.0",
+  "description": "StartupOS AI Tools - One-line install for CLI, MCP Servers, and Skills",
+  "type": "module",
+  "bin": {
+    "startupos": "./cli/dist/index.js"
+  },
+  "files": [
+    "cli/dist/",
+    "mcp-suite/packages/*/dist/",
+    "mcp-suite/packages/*/package.json",
+    "skills/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "npm run build:cli && npm run build:mcp",
+    "build:cli": "cd cli && npm install && npm run build",
+    "build:mcp": "cd mcp-suite && npm install && npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "startupos",
+    "创业os",
+    "financial-management",
+    "cli",
+    "mcp",
+    "model-context-protocol",
+    "ai-native",
+    "claude-code"
+  ],
+  "author": "StartupOS Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Xaiver03/startupos-ai-tools.git"
+  },
+  "homepage": "https://github.com/Xaiver03/startupos-ai-tools#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
