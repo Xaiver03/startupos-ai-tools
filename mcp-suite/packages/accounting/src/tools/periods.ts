@@ -5,7 +5,7 @@ import type {
   CreateAccountingPeriodInput,
   CloseAccountingPeriodInput,
   SetOpeningBalanceInput,
-} from '@ssos/mcp-shared';
+} from '@startupos/mcp-shared';
 
 export function createAccountingPeriodTools(client: SSOSClient) {
   return {

@@ -2,7 +2,7 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
-import { SSOSClient } from '@ssos/mcp-shared';
+import { SSOSClient } from '@startupos/mcp-shared';
 import { createContractTools } from './tools/contracts.js';
 import { createContractReviewTools } from './tools/contract-review.js';
 import { createDemandLetterTools } from './tools/demand-letters.js';

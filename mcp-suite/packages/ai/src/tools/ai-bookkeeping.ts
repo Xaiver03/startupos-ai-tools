@@ -5,7 +5,7 @@ import type {
   ListAIConversationsInput,
   OCRInvoiceInput,
   AskComplianceQuestionInput,
-} from '@ssos/mcp-shared';
+} from '@startupos/mcp-shared';
 
 export function createAIBookkeepingTools(client: SSOSClient) {
   return {

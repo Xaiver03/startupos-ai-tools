@@ -1,4 +1,4 @@
-import type { APIResponse, CreateLaborContractInput, ListLaborContractsInput, SSOSClient } from '@ssos/mcp-shared';
+import type { APIResponse, CreateLaborContractInput, ListLaborContractsInput, SSOSClient } from '@startupos/mcp-shared';
 
 export function createLaborContractTools(client: SSOSClient) {
   return {

@@ -1,4 +1,4 @@
-import type { APIResponse, CreatePayrollRecordInput, ListPayrollRecordsInput, PostPayrollInput, SSOSClient } from '@ssos/mcp-shared';
+import type { APIResponse, CreatePayrollRecordInput, ListPayrollRecordsInput, PostPayrollInput, SSOSClient } from '@startupos/mcp-shared';
 
 export function createPayrollTools(client: SSOSClient) {
   return {

@@ -1,4 +1,4 @@
-import type { APIResponse, GetCurrentWorkspaceInput, GetWorkspaceSettingsInput, ListWorkspacesInput, SSOSClient, SwitchWorkspaceInput, Workspace } from '@ssos/mcp-shared';
+import type { APIResponse, GetCurrentWorkspaceInput, GetWorkspaceSettingsInput, ListWorkspacesInput, SSOSClient, SwitchWorkspaceInput, Workspace } from '@startupos/mcp-shared';
 export function createWorkspaceTools(client: SSOSClient) {
   return {
     list_workspaces: {

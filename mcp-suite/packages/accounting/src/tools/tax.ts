@@ -1,4 +1,4 @@
-import type { SSOSClient, APIResponse, GetTaxCalendarTasksInput, GetTaxCalculationsInput, GetTaxFilingFormsInput } from '@ssos/mcp-shared';
+import type { SSOSClient, APIResponse, GetTaxCalendarTasksInput, GetTaxCalculationsInput, GetTaxFilingFormsInput } from '@startupos/mcp-shared';
 
 export function createTaxTools(client: SSOSClient) {
   return {

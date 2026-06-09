@@ -1,4 +1,4 @@
-import type { APIResponse, CreateApiKeyInput, ListApiKeysInput, RevokeApiKeyInput, SSOSClient, ToggleApiKeyInput } from '@ssos/mcp-shared';
+import type { APIResponse, CreateApiKeyInput, ListApiKeysInput, RevokeApiKeyInput, SSOSClient, ToggleApiKeyInput } from '@startupos/mcp-shared';
 
 export function createApiKeyManagementTools(client: SSOSClient) {
   return {

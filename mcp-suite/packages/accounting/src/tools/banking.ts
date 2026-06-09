@@ -5,7 +5,7 @@ import type {
   ListBankTransactionsInput,
   ImportBankTransactionsInput,
   ListReconciliationRecordsInput,
-} from '@ssos/mcp-shared';
+} from '@startupos/mcp-shared';
 
 export function createBankTools(client: SSOSClient) {
   return {

@@ -1,4 +1,4 @@
-import type { APIResponse, GenerateDemandLetterInput, GetLegalPathRecommendationInput, ListDemandLettersInput, SSOSClient, SaveDemandLetterInput } from '@ssos/mcp-shared';
+import type { APIResponse, GenerateDemandLetterInput, GetLegalPathRecommendationInput, ListDemandLettersInput, SSOSClient, SaveDemandLetterInput } from '@startupos/mcp-shared';
 
 export function createDemandLetterTools(client: SSOSClient) {
   return {

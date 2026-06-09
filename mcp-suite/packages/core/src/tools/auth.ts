@@ -1,4 +1,4 @@
-import type { SSOSClient, SwitchAccountInput, RemoveAccountInput } from '@ssos/mcp-shared';
+import type { SSOSClient, SwitchAccountInput, RemoveAccountInput } from '@startupos/mcp-shared';
 
 export function createAuthTools(client: SSOSClient) {
   return {

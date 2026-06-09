@@ -1,4 +1,4 @@
-import type { APIResponse, CreateEmployeeInput, DeleteEmployeeInput, GetEmployeeInput, ListEmployeesInput, SSOSClient, UpdateEmployeeInput } from '@ssos/mcp-shared';
+import type { APIResponse, CreateEmployeeInput, DeleteEmployeeInput, GetEmployeeInput, ListEmployeesInput, SSOSClient, UpdateEmployeeInput } from '@startupos/mcp-shared';
 
 export function createEmployeeTools(client: SSOSClient) {
   return {

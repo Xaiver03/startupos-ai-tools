@@ -1,4 +1,4 @@
-import type { APIResponse, AskContractQuestionInput, GetContractReviewInput, ListContractReviewsInput, ReviewContractTextInput, SSOSClient } from '@ssos/mcp-shared';
+import type { APIResponse, AskContractQuestionInput, GetContractReviewInput, ListContractReviewsInput, ReviewContractTextInput, SSOSClient } from '@startupos/mcp-shared';
 
 export function createContractReviewTools(client: SSOSClient) {
   return {

@@ -1,4 +1,4 @@
-import type { APIResponse, CreatePartnerInput, CreateVatInvoiceInput, ListPartnersInput, ListVatInvoicesInput, SSOSClient, UpdatePartnerInput } from '@ssos/mcp-shared';
+import type { APIResponse, CreatePartnerInput, CreateVatInvoiceInput, ListPartnersInput, ListVatInvoicesInput, SSOSClient, UpdatePartnerInput } from '@startupos/mcp-shared';
 
 export function createInvoiceTools(client: SSOSClient) {
   return {

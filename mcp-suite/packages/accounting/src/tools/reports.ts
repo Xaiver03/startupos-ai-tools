@@ -7,7 +7,7 @@ import type {
   GenerateBankJournalInput,
   GetGeneralLedgerInput,
   GetAccountBalancesInput,
-} from '@ssos/mcp-shared';
+} from '@startupos/mcp-shared';
 
 export function createReportTools(client: SSOSClient) {
   return {

@@ -1,5 +1,5 @@
-import type { SSOSClient } from '@ssos/mcp-shared';
-import { RESOURCES, getResource, assertCrud } from '@ssos/mcp-shared';
+import type { SSOSClient } from '@startupos/mcp-shared';
+import { RESOURCES, getResource, assertCrud } from '@startupos/mcp-shared';
 
 /**
  * Universal CRUD tools for all resources

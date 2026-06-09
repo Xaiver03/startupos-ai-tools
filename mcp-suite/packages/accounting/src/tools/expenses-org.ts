@@ -1,4 +1,4 @@
-import type { APIResponse, ApproveExpenseClaimInput, CreateDepartmentInput, CreateExpenseClaimInput, CreateProjectInput, ListDepartmentsInput, ListExpenseClaimsInput, ListProjectsInput, SSOSClient } from '@ssos/mcp-shared';
+import type { APIResponse, ApproveExpenseClaimInput, CreateDepartmentInput, CreateExpenseClaimInput, CreateProjectInput, ListDepartmentsInput, ListExpenseClaimsInput, ListProjectsInput, SSOSClient } from '@startupos/mcp-shared';
 
 export function createExpenseTools(client: SSOSClient) {
   return {

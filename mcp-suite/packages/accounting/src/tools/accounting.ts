@@ -1,4 +1,4 @@
-import type { SSOSClient } from '@ssos/mcp-shared';
+import type { SSOSClient } from '@startupos/mcp-shared';
 import type {
   JournalEntry,
   Account,
@@ -9,7 +9,7 @@ import type {
   CreateJournalLineItemInput,
   ListAccountsInput,
   GetAccountBalanceInput,
-} from '@ssos/mcp-shared';
+} from '@startupos/mcp-shared';
 
 export function createAccountingTools(client: SSOSClient) {
   return {
