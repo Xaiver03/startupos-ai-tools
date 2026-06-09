@@ -93,6 +93,18 @@ npm install -g @xaiverdeng/startuos-cli  # 安装 CLI
 npx @xaiverdeng/startupos-cli setup --skill  # 然后安装 Skill
 ```
 
+**💡 短命令别名**: 从 v1.0.4 起，支持 `ssos` 短命令：
+```bash
+# 两种命令完全等价
+startupos-cli crud list accounts
+ssos crud list accounts  # ✨ 更短更快
+
+# 推荐在日常使用中用短命令
+ssos auth login
+ssos accounting trial-balance
+ssos doctor
+```
+
 **重要说明**:
 - **MCP 服务器**: 独立工具，AI IDE 直接调用，不依赖 CLI
 - **Skills**: Claude Code 工作流，内部调用 CLI 命令，必须先安装 CLI
@@ -182,29 +194,29 @@ startupos-cli auth api-key <your-key>
 #### 🔐 认证命令
 
 ```bash
-# 三种认证方式
-startupos-cli auth login                    # 邮箱密码登录
-startupos-cli auth api-key <key>            # API Key 认证
+# 三种认证方式（可用 ssos 短命令）
+ssos auth login                             # 邮箱密码登录
+ssos auth api-key <key>                     # API Key 认证
 export STARTUPOS_JWT_TOKEN=<token>          # JWT Token (环境变量)
 
 # 查看当前认证状态
-startupos-cli auth whoami
+ssos auth whoami
 ```
 
 #### 🗂️ 通用 CRUD（支持 127 种资源）
 
 ```bash
 # 基础操作
-startupos-cli crud list <resource> [--workspace-id=<uuid>]
-startupos-cli crud get <resource> <id>
-startupos-cli crud create <resource> <json-data>
-startupos-cli crud update <resource> <id> <json-data>
-startupos-cli crud delete <resource> <id>
+ssos crud list <resource> [--workspace-id=<uuid>]
+ssos crud get <resource> <id>
+ssos crud create <resource> <json-data>
+ssos crud update <resource> <id> <json-data>
+ssos crud delete <resource> <id>
 
 # 示例
-startupos-cli crud list journal-entries --workspace-id=abc123
-startupos-cli crud get accounts 5001
-startupos-cli crud create employees '{"name":"张三","email":"zhang@example.com"}'
+ssos crud list journal-entries --workspace-id=abc123
+ssos crud get accounts 5001
+ssos crud create employees '{"name":"张三","email":"zhang@example.com"}'
 ```
 
 **127 种资源类型**：`accounts`, `journal-entries`, `vat-invoices`, `employees`, `contracts`, `tax-calculations` 等
@@ -213,42 +225,42 @@ startupos-cli crud create employees '{"name":"张三","email":"zhang@example.com
 
 ```bash
 # 报表生成
-startupos-cli accounting trial-balance        # 试算平衡表
-startupos-cli accounting balance-sheet        # 资产负债表
-startupos-cli accounting income-statement     # 利润表
-startupos-cli accounting cash-flow           # 现金流量表
+ssos accounting trial-balance        # 试算平衡表
+ssos accounting balance-sheet        # 资产负债表
+ssos accounting income-statement     # 利润表
+ssos accounting cash-flow           # 现金流量表
 
 # 凭证管理
-startupos-cli accounting batch-entries <file> # 批量记账
-startupos-cli accounting reverse-entry <id>   # 冲红凭证
+ssos accounting batch-entries <file> # 批量记账
+ssos accounting reverse-entry <id>   # 冲红凭证
 
 # 期末处理
-startupos-cli accounting period-close         # 期末结转
+ssos accounting period-close         # 期末结转
 ```
 
 #### 🧾 税务命令（13 工具）
 
 ```bash
-startupos-cli tax calculate-vat              # 计算增值税
-startupos-cli tax annual-settlement          # 汇算清缴
-startupos-cli tax salary-tax                 # 工资个税
-startupos-cli tax calendar                   # 纳税日历
+ssos tax calculate-vat              # 计算增值税
+ssos tax annual-settlement          # 汇算清缴
+ssos tax salary-tax                 # 工资个税
+ssos tax calendar                   # 纳税日历
 ```
 
 #### 📄 发票命令（10 工具）
 
 ```bash
-startupos-cli invoice import-xml <file>      # 导入增值税发票
-startupos-cli invoice batch-create-entries   # 批量生成凭证
-startupos-cli invoice verify <code>          # 验证发票真伪
+ssos invoice import-xml <file>      # 导入增值税发票
+ssos invoice batch-create-entries   # 批量生成凭证
+ssos invoice verify <code>          # 验证发票真伪
 ```
 
 #### 👥 人事 + ⚖️ 法务 + 🤖 AI（37 工具）
 
 ```bash
-startupos-cli hr payroll-calculate           # 计算工资
-startupos-cli legal contract-review <file>   # 合同审查
-startupos-cli ai-bookkeeping scan "购买办公用品500元"  # 智能记账
+ssos hr payroll-calculate           # 计算工资
+ssos legal contract-review <file>   # 合同审查
+ssos ai-bookkeeping scan "购买办公用品500元"  # 智能记账
 ```
 
 ### 📋 完整命令参考
@@ -266,7 +278,9 @@ startupos-cli ai-bookkeeping scan "购买办公用品500元"  # 智能记账
 | **setup** | 1 | 一键安装配置 |
 | **doctor** | 1 | 健康检查 |
 
-**完整文档**: 运行 `startupos-cli --help` 或 `startuops-cli <module> --help` 查看详细用法
+**完整文档**: 运行 `ssos --help` 或 `ssos <module> --help` 查看详细用法
+
+**💡 提示**: 所有 `startupos-cli` 命令都可以用 `ssos` 短命令代替
 
 #### MCP 服务器
 

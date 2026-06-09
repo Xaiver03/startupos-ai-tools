@@ -1,10 +1,11 @@
 {
   "name": "@xaiverdeng/startupos-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Startup OS CLI — AI Native command-line tool for financial management. One-line setup for MCP servers across 9 AI IDEs.",
   "type": "module",
   "bin": {
-    "startupos-cli": "./dist/index.js"
+    "startupos-cli": "./dist/index.js",
+    "ssos": "./dist/index.js"
   },
   "files": [
     "dist/",
