@@ -29,9 +29,17 @@ function getClaudeSkillsPath() {
     return path.join(os.homedir(), '.claude', 'skills', 'startupos');
 }
 function getMcpPackagePath() {
-    // Assume MCP packages are built in the same repo
-    const cliDir = path.dirname(path.dirname(__dirname)); // ai-tools/cli
-    return path.join(path.dirname(cliDir), 'mcp-suite'); // ai-tools/mcp-suite
+    // When installed via NPM, MCP servers are bundled in cli/mcp-servers/
+    // When running from source, they're in ../mcp-suite
+    const cliDir = path.dirname(path.dirname(__dirname));
+    const bundledPath = path.join(cliDir, 'mcp-servers');
+    const sourcePath = path.join(path.dirname(cliDir), 'mcp-suite');
+    // Check if bundled version exists (NPM install)
+    if (fs.existsSync(bundledPath)) {
+        return bundledPath;
+    }
+    // Fall back to source path (development)
+    return sourcePath;
 }
 async function setupMcpServers() {
     log('\n🔧 Setting up Startup OS MCP Servers...', 'blue');

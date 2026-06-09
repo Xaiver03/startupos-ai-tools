@@ -236,7 +236,12 @@ export function getMCPServerConfigs(mcpSuitePath) {
     const packages = ['core', 'accounting', 'hr', 'ai', 'legal'];
     const servers = {};
     for (const pkg of packages) {
-        const distPath = path.join(mcpSuitePath, 'packages', pkg, 'dist', 'index.js');
+        // Try bundled path first (NPM install: cli/mcp-servers/pkg/index.js)
+        let distPath = path.join(mcpSuitePath, pkg, 'index.js');
+        // Fall back to source path (development: mcp-suite/packages/pkg/dist/index.js)
+        if (!fs.existsSync(distPath)) {
+            distPath = path.join(mcpSuitePath, 'packages', pkg, 'dist', 'index.js');
+        }
         servers[`startupos-${pkg}`] = {
             command: 'node',
             args: [distPath],
