@@ -154,7 +154,7 @@ async function setupSkill() {
             log(`  ✓ Created ${skillDir}`, 'green');
         }
         // Copy skill file
-        const sourceSkillPath = path.join(__dirname, '..', '..', '..', 'skills', 'ssos-cli.md');
+        const sourceSkillPath = path.join(__dirname, '..', '..', 'skills', 'ssos-cli-v2.md');
         if (!fs.existsSync(sourceSkillPath)) {
             log(`⚠️  Skill file not found: ${sourceSkillPath}`, 'yellow');
             log('Creating skill file from template...', 'blue');
