@@ -4,10 +4,10 @@
 
 **AI-powered CLI, MCP Servers, and Skills for StartupOS Financial Management**
 
-[![npm version](https://img.shields.io/npm/v/@xaiverdeng/startupos-cli.svg)](https://www.npmjs.com/package/@xaiverdeng/startupos-cli)
-[![npm downloads](https://img.shields.io/npm/dm/@xaiverdeng/startupos-cli.svg)](https://www.npmjs.com/package/@xaiverdeng/startupos-cli)
+[![npm version](https://img.shields.io/npm/v/@xaiverdeng/ssos.svg)](https://www.npmjs.com/package/@xaiverdeng/ssos)
+[![npm downloads](https://img.shields.io/npm/dm/@xaiverdeng/ssos.svg)](https://www.npmjs.com/package/@xaiverdeng/ssos)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Node version](https://img.shields.io/node/v/@xaiverdeng/startupos-cli.svg)](https://nodejs.org)
+[![Node version](https://img.shields.io/node/v/@xaiverdeng/ssos.svg)](https://nodejs.org)
 [![GitHub stars](https://img.shields.io/github/stars/Xaiver03/startupos-ai-tools.svg)](https://github.com/Xaiver03/startupos-ai-tools/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/Xaiver03/startupos-ai-tools.svg)](https://github.com/Xaiver03/startupos-ai-tools/issues)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -82,24 +82,23 @@ git clone https://github.com/Xaiver03/startupos-ai-tools.git
 cd startupos-ai-tools
 
 # 一键安装所有工具（CLI + MCP + Skills）
-npx @xaiverdeng/startupos-cli setup
+npx @xaiverdeng/ssos setup
 
 # 或仅安装 MCP 服务器
-npx @xaiverdeng/startupos-cli setup --mcp
+npx @xaiverdeng/ssos setup --mcp
 
 # ⚠️ 注意: Skills 依赖 CLI，不能单独安装
 # 如果只想要 Skills，需要先安装 CLI：
-npm install -g @xaiverdeng/startuos-cli  # 安装 CLI
-npx @xaiverdeng/startupos-cli setup --skill  # 然后安装 Skill
+npm install -g @xaiverdeng/ssos  # 安装 CLI
+npx @xaiverdeng/ssos setup --skill  # 然后安装 Skill
 ```
 
-**💡 短命令别名**: 从 v1.0.4 起，支持 `ssos` 短命令：
+**💡 命令简洁**: 包名和命令都是 `ssos`
 ```bash
-# 两种命令完全等价
-startupos-cli crud list accounts
-ssos crud list accounts  # ✨ 更短更快
+# 全局安装
+npm install -g @xaiverdeng/ssos
 
-# 推荐在日常使用中用短命令
+# 使用命令
 ssos auth login
 ssos accounting trial-balance
 ssos doctor
@@ -130,7 +129,7 @@ cd startupos-ai-tools
 ### 🔍 检查安装状态
 
 ```bash
-npx @xaiverdeng/startupos-cli doctor
+npx @xaiverdeng/ssos doctor
 ```
 
 输出示例：
@@ -141,7 +140,7 @@ npx @xaiverdeng/startupos-cli doctor
 
 📦 CLI
   ✓ Version: 1.0.0
-  ✓ Package: @xaiverdeng/startupos-cli
+  ✓ Package: @xaiverdeng/ssos
 
 🤖 AI IDEs
   ✓ Claude Code - configured
@@ -175,7 +174,7 @@ cat ~/.claude.json  # Claude Code
 cat ~/Library/Application\ Support/Cursor/User/globalStorage/rooveterinaryinc.roo-cline/settings/cline_mcp_settings.json  # Cursor
 
 # 2. 重新安装
-npx @xaiverdeng/startupos-cli setup --mcp
+npx @xaiverdeng/ssos setup --mcp
 
 # 3. 重启 AI IDE
 ```
@@ -183,10 +182,10 @@ npx @xaiverdeng/startupos-cli setup --mcp
 **认证失败**
 ```bash
 # 重新登录
-startupos-cli auth login
+ssos auth login
 
 # 或使用 API Key
-startupos-cli auth api-key <your-key>
+ssos auth api-key <your-key>
 ```
 
 ### 📚 使用指南
@@ -280,7 +279,7 @@ ssos ai-bookkeeping scan "购买办公用品500元"  # 智能记账
 
 **完整文档**: 运行 `ssos --help` 或 `ssos <module> --help` 查看详细用法
 
-**💡 提示**: 所有 `startupos-cli` 命令都可以用 `ssos` 短命令代替
+**💡 提示**: 包名和命令都是 `ssos`，简洁统一
 
 #### MCP 服务器
 
