@@ -1,6 +1,6 @@
 {
   "name": "@xaiverdeng/ssos",
-  "version": "2.1.8",
+  "version": "2.1.9",
   "description": "StartupOS AI Tools - One-line install for CLI, MCP Servers, and Skills",
   "type": "module",
   "bin": {
@@ -34,11 +34,11 @@
     "build:cli": "cd cli && npm install && npm run build",
     "build:mcp": "cd mcp-suite && npm install && npm run build",
     "prepublishOnly": "npm run build",
-    "postinstall": "echo \"\u2699\ufe0f  Setting up @xaiverdeng/ssos...\"\ncd cli && npm install --omit=dev && cd .. | true"
+    "postinstall": "echo \"⚙️  Setting up @xaiverdeng/ssos...\"\ncd cli && npm install --omit=dev && cd .. | true"
   },
   "keywords": [
     "startupos",
-    "\u521b\u4e1aos",
+    "创业os",
     "financial-management",
     "cli",
     "mcp",
