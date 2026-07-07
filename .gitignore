@@ -1,6 +1,5 @@
 .tgz
 node_modules/
-**/dist/
 *.tsbuildinfo
 *.log
 .DS_Store

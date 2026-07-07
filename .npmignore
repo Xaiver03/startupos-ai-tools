@@ -1,26 +1,5 @@
-# Include dist directories (override default ignore)
-!dist
-!cli/dist
-!mcp-suite/packages/*/dist
-
-# Exclude development files
+.git
 node_modules
 *.log
 .DS_Store
-.env
-.env.*
-*.tgz
-tsconfig.json
-src
-
-# Exclude test and development files
-test
-tests
-*.test.ts
-*.spec.ts
-.vscode
-.idea
-
-# Exclude build artifacts we don't need
-*.map
-*.swp
+.gitignore
