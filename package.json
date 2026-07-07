@@ -1,6 +1,6 @@
 {
   "name": "@xaiverdeng/ssos",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "StartupOS AI Tools - One-line install for CLI, MCP Servers, and Skills",
   "type": "module",
   "bin": {
@@ -35,7 +35,7 @@
   },
   "keywords": [
     "startupos",
-    "\u521b\u4e1aos",
+    "创业os",
     "financial-management",
     "cli",
     "mcp",
