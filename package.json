@@ -1,6 +1,6 @@
 {
   "name": "@xaiverdeng/ssos",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "StartupOS AI Tools - One-line install for CLI, MCP Servers, and Skills",
   "type": "module",
   "bin": {
