@@ -34,11 +34,11 @@
     "build:cli": "cd cli && npm install && npm run build",
     "build:mcp": "cd mcp-suite && npm install && npm run build",
     "prepublishOnly": "npm run build",
-    "postinstall": "echo \"⚙️  Setting up @xaiverdeng/ssos...\"\ncd cli && npm install --omit=dev && cd .. | true"
+    "postinstall": "echo \"\u2699\ufe0f  Setting up @xaiverdeng/ssos...\"\ncd cli && npm install --omit=dev && cd .. | true"
   },
   "keywords": [
     "startupos",
-    "创业os",
+    "\u521b\u4e1aos",
     "financial-management",
     "cli",
     "mcp",
