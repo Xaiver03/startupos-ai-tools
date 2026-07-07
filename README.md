@@ -1,55 +1,51 @@
 # StartupOS AI Tools
 
-**AI Native 工具套件** - 为 StartupOS 财务管理系统提供 CLI、MCP 服务器和 AI 集成
+为 StartupOS 财税管理系统提供 CLI 命令行工具、MCP 服务器和 Claude Skills。
 
 [![npm version](https://img.shields.io/npm/v/@xaiverdeng/ssos.svg)](https://www.npmjs.com/package/@xaiverdeng/ssos)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](../LICENSE)
 
 ---
 
-## 📦 项目结构
-
-```
-ai-tools/
-├── cli/                    # CLI 命令行工具
-│   ├── src/               # TypeScript 源码
-│   ├── dist/              # 编译输出
-│   ├── mcp-servers/       # 捆绑的 MCP 服务器（用于 NPM 发布）
-│   └── package.json       # NPM 包配置
-│
-├── mcp-suite/             # MCP 服务器套件（源码）
-│   └── packages/
-│       ├── core/          # 核心服务（认证、CRUD、工作区）
-│       ├── accounting/    # 会计服务（报表、凭证、账簿）
-│       ├── hr/            # 人事服务（员工、薪资、合同）
-│       ├── ai/            # AI 服务（智能记账、OCR）
-│       ├── legal/         # 法务服务（合同审查、催款函）
-│       └── shared/        # 共享库
-│
-├── chatbot/               # AI 聊天机器人（未实现）
-├── web/                   # Web 界面（未实现）
-└── mcp/                   # MCP 协议文档
-```
-
-## 🚀 快速开始
-
-### 用户安装（NPM 包）
+## 🚀 安装
 
 ```bash
-# 全局安装
-npm install -g @xaiverdeng/ssos
-
-# 一键安装所有工具
-ssos setup
-
-# 或使用 npx
+# 一键安装（推荐）
 npx @xaiverdeng/ssos setup
 
 # 仅安装 MCP 服务器
-ssos setup --mcp
+npx @xaiverdeng/ssos setup --mcp
 
 # 仅安装 Claude Skills
-ssos setup --skill
+npx @xaiverdeng/ssos setup --skill
+```
+
+CLI 工具自动检测并配置：Claude Code · Cursor · Windsurf · VS Code + Cline · Zed · OpenCode · Hermes · Codex · OpenClaw。
+
+---
+
+## 📦 MCP 服务器
+
+安装后可使用 5 个专业 MCP 服务器：
+
+| 服务器 | 功能 |
+|--------|------|
+| `accounting` | 财务报表、凭证、账簿、科目管理 |
+| `hr` | 员工管理、薪资计算、合同 |
+| `ai` | 智能记账、OCR 票据识别 |
+| `legal` | 合同审查、催款函生成 |
+| `core` | 认证、CRUD、工作区管理 |
+
+---
+
+## 🛠️ 项目结构
+
+```
+├── cli/            # CLI 命令行工具
+├── mcp-suite/      # MCP 服务器套件
+├── skills/         # Claude Skills
+├── chatbot/        # AI 聊天（预留）
+└── web/            # Web 界面（预留）
 ```
 
 ## 🛠️ 开发工作流
