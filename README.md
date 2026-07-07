@@ -54,34 +54,40 @@ ssos setup --skill
 
 ### 开发者设置（从源码）
 
+> 仅适用于需要修改 CLI/MCP 工具源码的开发者。普通用户请使用上面的 `npx` 一键安装。
+
 **前置要求**:
 - Node.js >= 18.0.0
-- PostgreSQL 16 (如需本地测试)
-- StartupOS 后端运行中 (http://localhost:4000 或 https://api.finlaw.cloud)
 
 **步骤**:
 
 ```bash
-# 1. 安装依赖
-cd ai-tools
+# 1. 克隆仓库
+git clone https://github.com/Xaiver03/startupos-ai-tools.git
+cd startupos-ai-tools
+
+# 2. 安装依赖
 npm install
 
-# 2. 构建 MCP Suite
+# 3. 构建 MCP Suite
 cd mcp-suite
 npm install
-npm run build  # 构建所有 5 个 MCP 服务器
+npm run build
 
-# 3. 构建 CLI
+# 4. 构建 CLI
 cd ../cli
 npm install
 npm run build
-npm link  # 全局链接，可直接使用 ssos 命令
+npm link
 
-# 4. 安装到 AI IDE
+# 5. 安装到 AI IDE（连接生产环境）
 ssos setup --mcp
 
-# 5. 验证安装
+# 6. 验证
 ssos doctor
+```
+
+CLI 工具默认连接 `https://api.finlaw.cloud` 生产环境。如需本地调试，设置环境变量 `SSOS_API_URL=http://localhost:4000`（需要本地运行后端，仅限项目成员）。
 ```
 
 ## 🛠️ 开发工作流
