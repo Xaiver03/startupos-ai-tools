@@ -8,6 +8,7 @@
   },
   "files": [
     "cli/dist",
+    "cli/dist/**",
     "mcp-suite/packages/accounting/dist",
     "mcp-suite/packages/accounting/package.json",
     "mcp-suite/packages/accounting-utils/dist",
@@ -34,7 +35,7 @@
   },
   "keywords": [
     "startupos",
-    "创业os",
+    "\u521b\u4e1aos",
     "financial-management",
     "cli",
     "mcp",
